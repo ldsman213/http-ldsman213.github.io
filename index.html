@@ -1,0 +1,37 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Scripture</title>
+</head>
+<body>
+  <h1>Mood Scripture</h1>
+  <p>Select your mood to receive a scripture from the Latter-day Saint canon.</p>
+
+  <div>
+    <button onclick="showVerse('sad')">Sad</button>
+    <button onclick="showVerse('overwhelmed')">Overwhelmed</button>
+    <button onclick="showVerse('peaceful')">Peaceful</button>
+    <!-- We can add more moods later -->
+  </div>
+
+  <div id="verse-display" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc;">
+    Your scripture will appear here.
+  </div>
+
+  <script>
+    function showVerse(mood) {
+      let verse = "";
+      if (mood === "sad") {
+        verse = "Alma 7:11-12 — He will take upon him their infirmities...";
+      } else if (mood === "overwhelmed") {
+        verse = "Matthew 11:28-30 — Come unto me, all ye that labour...";
+      } else if (mood === "peaceful") {
+        verse = "D&C 121:7-8 — Peace be unto thy soul...";
+      }
+      document.getElementById("verse-display").innerHTML = verse;
+    }
+  </script>
+</body>
+</html>
