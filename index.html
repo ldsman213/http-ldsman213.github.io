@@ -1,36 +1,107 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mood Scripture</title>
+  <title>Mood Scripture • LDS</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.5;
+    }
+    h1 {
+      color: #002b5c;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      color: #555;
+    }
+    .moods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 30px 0;
+    }
+    button {
+      padding: 16px 12px;
+      font-size: 16px;
+      background: white;
+      border: 2px solid #002b5c;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #002b5c;
+      color: white;
+    }
+    #verse-display {
+      margin-top: 30px;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      min-height: 180px;
+    }
+    .verse {
+      font-style: italic;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
   <h1>Mood Scripture</h1>
-  <p>Select your mood to receive a scripture from the Latter-day Saint canon.</p>
+  <p>Welcome. Select your current mood to receive an uplifting scripture from the Latter-day Saint canon.</p>
 
-  <div>
-    <button onclick="showVerse('sad')">Sad</button>
+  <div class="moods">
+    <button onclick="showVerse('sad')">Sad / Discouraged</button>
+    <button onclick="showVerse('anxious')">Anxious / Worried</button>
     <button onclick="showVerse('overwhelmed')">Overwhelmed</button>
-    <button onclick="showVerse('peaceful')">Peaceful</button>
-    <!-- We can add more moods later -->
+    <button onclick="showVerse('tempted')">Tempted</button>
+    <button onclick="showVerse('angry')">Angry / Frustrated</button>
+    <button onclick="showVerse('lonely')">Lonely</button>
+    <button onclick="showVerse('seeking')">Seeking Direction</button>
+    <button onclick="showVerse('humbled')">Humbled / Repentant</button>
+    <button onclick="showVerse('grateful')">Grateful</button>
+    <button onclick="showVerse('peaceful')">Peaceful / Content</button>
   </div>
 
-  <div id="verse-display" style="margin-top: 20px; padding: 15px; border: 1px solid #ccc;">
-    Your scripture will appear here.
+  <div id="verse-display">
+    <strong>Your scripture will appear here.</strong>
   </div>
 
   <script>
     function showVerse(mood) {
-      let verse = "";
-      if (mood === "sad") {
-        verse = "Alma 7:11-12 — He will take upon him their infirmities...";
-      } else if (mood === "overwhelmed") {
-        verse = "Matthew 11:28-30 — Come unto me, all ye that labour...";
-      } else if (mood === "peaceful") {
-        verse = "D&C 121:7-8 — Peace be unto thy soul...";
-      }
-      document.getElementById("verse-display").innerHTML = verse;
+      const display = document.getElementById("verse-display");
+      
+      const scriptures = {
+        sad: `“He will take upon him their infirmities, that his bowels may be filled with mercy...”<br><br><span class="verse">— Alma 7:11-12</span>`,
+        
+        anxious: `“Peace I leave with you, my peace I give unto you... Let not your heart be troubled...”<br><br><span class="verse">— John 14:27</span>`,
+        
+        overwhelmed: `“Come unto me, all ye that labour and are heavy laden, and I will give you rest.”<br><br><span class="verse">— Matthew 11:28</span>`,
+        
+        tempted: `“There hath no temptation taken you but such as is common to man: but God is faithful...”<br><br><span class="verse">— 1 Corinthians 10:13</span>`,
+        
+        angry: `“Cease to contend one with another; cease to be angry with your brother...”<br><br><span class="verse">— D&amp;C 136:23</span>`,
+        
+        lonely: `“I will not leave you comfortless: I will come to you.”<br><br><span class="verse">— John 14:18</span>`,
+        
+        seeking: `“If any of you lack wisdom, let him ask of God...”<br><br><span class="verse">— James 1:5</span>`,
+        
+        humbled: `“...humble yourselves before the Lord... he will lift you up...”<br><br><span class="verse">— James 4:10 / Ether 12:27</span>`,
+        
+        grateful: `“...in everything give thanks...”<br><br><span class="verse">— D&amp;C 59:7</span>`,
+        
+        peaceful: `“Peace, peace be unto you... because of your faith...”<br><br><span class="verse">— D&amp;C 121:7-8</span>`
+      };
+
+      display.innerHTML = `<strong>${mood.charAt(0).toUpperCase() + mood.slice(1)}:</strong><br><br>${scriptures[mood] || "Scripture coming soon."}`;
     }
   </script>
 </body>
